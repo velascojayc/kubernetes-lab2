@@ -1,0 +1,69 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "3"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"hello-world","namespace":"default"},"spec":{"selector":{"matchLabels":{"run":"hello-world"}},"template":{"metadata":{"labels":{"run":"hello-world"}},"spec":{"containers":[{"image":"hello-world:kube1","name":"hello-world","ports":[{"containerPort":8080}]}]}}}}
+  creationTimestamp: "2024-02-08T08:36:11Z"
+  generation: 4
+  name: hello-world
+  namespace: default
+  resourceVersion: "3576"
+  uid: 6ee941b3-c2f4-4711-b2a8-771ab2dd7961
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: hello-world
+  strategy:
+    rollingUpdate:
+      maxSurge: 40%
+      maxUnavailable: 0%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: hello-world
+    spec:
+      containers:
+      - image: velascojaycmynt/kubernetes-lab2-2
+        imagePullPolicy: IfNotPresent
+        name: hello-world
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2024-02-08T08:41:09Z"
+    lastUpdateTime: "2024-02-08T08:41:09Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2024-02-08T08:36:11Z"
+    lastUpdateTime: "2024-02-08T08:41:09Z"
+    message: ReplicaSet "hello-world-7bcf4bc67d" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 4
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
